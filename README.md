@@ -1,32 +1,31 @@
-# vue2-keepalive-memory-leak-bug-fixed
-The demo can reproduce the vue keepalive memory problem.
-# Steps to reproduce
-1. npm install 
-2. npm run serve 
-3. Open the browser and input the http://localhost:8080/
-4. Click the add button to create a1-component.
-5. Click the add button to create a2-component.
-6. Click the add button to create a3-component.
-7. Click the add button to create a4-component ， now the usedJSHeapSize is about 330mb.
-8. Click the  a4-component delete button to remove a4-component ，but the usedJSHeapSize still 330mb. 
-9. See the usedJSHeapSize output is not to reduce, now the memory is leak.
-# What is expected?
-click the a4-component delete button ，I expected the usedJSHeapSize total is  250mb，but it didn't happen.
-# What is actually happening?
-the usedJSHeapSize total still is about 330mb.
-# Any additional comments? (optional)
-When you click the add button ,the usedJSHeapSize will increase about 80mb.
-click four times ,the usedJSHeapSize total is about 330mb. 
-next click the a4-component delete button ，the usedJSHeapSize Should be reduce 80mb，expected is about 250mb.
-but usedJSHeapSize total still is about 330mb. 
-you can view operating_steps.gif Steps to reproduce and view memory_analysis.gif to find the memory leak reason.
-# memory analysis
-use the chrome memory tool and analysis report  ，We can find The bug because
-the a3-component.componentInstance.$vnode.parent.componentOptions.children[0] is a4-component.so the a4-component can not be Memory free.
-# fixed the bug 
-I try to fixed the bug in the vue2.7.12 -> keepalive.js -> render() 
-path: src\core\components\keep-alive.ts
-code: line 127 insert fixed code.
+#  vue2的keepalive内存泄露与修复
+本例子可以复现keepalive内存泄露问题
+# 重现步骤
+1. npm install  进行安装
+2. npm run serve  运行
+3. 打开浏览器 the http://localhost:8080/
+4. 点击新增按钮创建组件a1
+5. 点击新增按钮创建组件a2
+6. 点击新增按钮创建组件a3
+7. 点击新增按钮创建组件a3 ， 当前内存使用大概 330mb
+8. 点击组件a4的x删除组件 ，但是内存依然是 330mb
+9. 查看内存使用并没有减少, 这时候内存泄露了
+# 期望
+点击组件a4的x删除组件 ，内存应该减去80mb，剩下250mb
+# 实际情况
+内存使用依然是330mb.
+# 其他描述
+当前点击每个新增按钮，内存都会增加80mb，重复点击4次，内存大概是330mb
+当点击组件a4的关闭时候，内存应该减去80mb，剩下250mb，但是实际还是330mb.
+你可以查看gif 动图来重新问题。
+# 内存报告分析
+通过谷歌浏览器的内存报告分析，我们可以看到，
+组件a3的a3-component.componentInstance.$vnode.parent.componentOptions.children[0]  居然是 组件a4，由于有这个引用，导致a4不能释放。
+
+# 修复这个问题
+通过修改代码 vue2.7.12 -> keepalive.js -> render() 
+地址: src\core\components\keep-alive.ts
+代码行数: line 127 加入下面修复的代码.
 ```js
  //mounted，repair the keepalive memory bug code
     for (const key in this.cache) {
@@ -37,5 +36,5 @@ code: line 127 insert fixed code.
       }
     }
 ```
-Use the code above,the keepalive memory leak is fixed.
-If you can read chinese ，Open the link for https://juejin.cn/post/7153186266300252168
+通过上面代码，每次执行keepalive的渲染方法，都会重新初始化组件间的错误引用。
+详细请访问掘金 https://juejin.cn/post/7153186266300252168
