@@ -1,5 +1,5 @@
 /*!
- * Vue.js v2.6.14.1 keepalive mounted，2.16.14修复keepalive 组件parent引用问题
+ * Vue.js v2.6.14.1
  * (c) 2014-2022 Evan You
  * Released under the MIT License.
  */

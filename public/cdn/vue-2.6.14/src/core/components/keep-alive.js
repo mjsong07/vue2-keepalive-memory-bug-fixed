@@ -126,7 +126,7 @@ export default {
     const slot = this.$slots.default
     const vnode: VNode = getFirstComponentChild(slot) 
     
-    //关键 修复缓存列表问题的地方
+    //修复缓存列表问题
     for (const key in this.cache) {
       const entry: ?CacheEntry = this.cache[key]
       if (entry && vnode && entry.tag && entry.tag !== vnode.tag ) { //如果当前的缓存对象不为空 并且 缓存与当前加载不一样

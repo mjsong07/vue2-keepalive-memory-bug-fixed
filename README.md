@@ -47,5 +47,5 @@
      <script src="/cdn/vue-2.6.14/dist_fixed_bug/vue.js"></script> 
 ```
 
-# 作者博客
+# blog
 https://juejin.cn/user/2972704795802653
