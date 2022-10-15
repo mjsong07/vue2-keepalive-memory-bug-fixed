@@ -39,3 +39,14 @@ code: line 127 insert fixed code.
 ```
 Use the code above,the keepalive memory leak is fixed.
 If you can read chinese ，Open the link for https://juejin.cn/post/7153186266300252168
+
+you can change the cdn info to Contrast differences 
+```html 
+    <!-- vue2.16.14  -->
+    <script src="/cdn/vue-2.6.14/dist/vue.js"></script>
+    <!-- vue2.16.14 fixed keep-alive memory bug -->
+     <script src="/cdn/vue-2.6.14/dist_fixed_bug/vue.js"></script> 
+```
+
+# author blog 
+https://juejin.cn/user/2972704795802653

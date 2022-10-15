@@ -38,3 +38,14 @@
 ```
 通过上面代码，每次执行keepalive的渲染方法，都会重新初始化组件间的错误引用。
 详细请访问掘金 https://juejin.cn/post/7153186266300252168
+
+实际代码整合到 public的cdn文件夹中，可以通过切换不同cdn对比效果
+```html 
+    <!-- 原有vue2.16.14版本 -->
+    <script src="/cdn/vue-2.6.14/dist/vue.js"></script>
+    <!-- 调整源码后的 版本,修复引用问题，支持sourcemap调试  -->
+     <script src="/cdn/vue-2.6.14/dist_fixed_bug/vue.js"></script> 
+```
+
+# 作者博客
+https://juejin.cn/user/2972704795802653
