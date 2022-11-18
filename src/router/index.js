@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import a from '../view/a.vue'
-import a from '../view/a2.vue' //使用复杂的vue场景
+import a from '../view/a.vue'
+// import a from '../view/a2.vue' //使用复杂的vue场景
 import index from '../view/index.vue'
 import Layout from '../view/Layout'
 
