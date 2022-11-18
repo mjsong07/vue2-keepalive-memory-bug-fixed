@@ -1,6 +1,6 @@
 <template>
     <div>
-        1111
+        <div>组件view<input v-model="myname"/> </div>
     </div>
 </template>
 <script>
@@ -12,6 +12,9 @@ export default {
         return {
             a: new Array(20000000).fill(1),//大概80mb 
         }
+    },
+    mounted(){  
+        this.myname = this.$route.query.name
     }
 }
 </script>
